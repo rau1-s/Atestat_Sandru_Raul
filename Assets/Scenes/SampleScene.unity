@@ -470,10 +470,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   speed: 10
-  jumpForce: 12
+  jumpForce: 13
   slideSpeed: 10
   wallJumpLerp: 10
-  dashSpeed: 25
+  dashSpeed: 15
   canMove: 0
   wallGrab: 0
   wallJumped: 0
