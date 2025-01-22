@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,10 +12,10 @@ public class PlayerMovement : MonoBehaviour
     private AnimationScript anim;
 
     public float speed = 10;
-    public float jumpForce = 70;  // was 50
-    public float slideSpeed = .5f;
-    public float wallJumpLerp = 20;
-    public float dashSpeed = 20;
+    public float jumpForce = 80;  // was 50
+    public float slideSpeed = .1f;
+    public float wallJumpLerp = 60;
+    public float dashSpeed = 40;
 
 
     public bool canMove;
@@ -153,24 +155,25 @@ public class PlayerMovement : MonoBehaviour
         hasDashed = true;
 
         anim.SetTrigger("dash");
-
-        rb.linearVelocity = Vector2.zero;
-        Vector2 dir = new Vector2(x, y);
-
+        Vector2 dir = new Vector2(x, y).normalized;
+        if (rb.linearVelocity.y < 0) {
+            dir.y = 0;
+            rb.linearVelocityY = 0;
+        }
         rb.linearVelocity += dir.normalized * dashSpeed;
+
         StartCoroutine(DashWait());
     }
 
     IEnumerator DashWait()
     {
         StartCoroutine(GroundDash());
-
         rb.gravityScale = 0;
         GetComponent<BetterJumping>().enabled = false;
         wallJumped = true;
         isDashing = true;
 
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(.5f);
 
         rb.gravityScale = 3;
         GetComponent<BetterJumping>().enabled = true;
@@ -187,7 +190,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallJump()
     {
-        if ((side == 1 && coll.onRightWall) || side == -1 && !coll.onRightWall)
+        if ((side == 1 && coll.onRightWall) || side == -1 && !coll.onRightWall)         // TBD
         {
             // side *= -1;
             // anim.Flip(side);
@@ -203,9 +206,9 @@ public class PlayerMovement : MonoBehaviour
         wallJumped = true;
     }
 
-    private void WallSlide()
+    private void WallSlide()                        // Fix the slide speed.
     {
-        // if(coll.wallSide != side) 
+        // if(coll.wallSide != side)                // TBD
         //     anim.Flip(side * -1);
 
         if (!canMove)
@@ -218,7 +221,7 @@ public class PlayerMovement : MonoBehaviour
         }
         float push = pushingWall ? 0 : rb.linearVelocity.x;
 
-        rb.linearVelocity = new Vector2(push, rb.gravityScale-slideSpeed);
+        rb.linearVelocity = new Vector2(push, -slideSpeed);
     }
 
     private void Walk(Vector2 dir)
