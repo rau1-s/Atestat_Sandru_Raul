@@ -15,7 +15,10 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 80;  // was 50
     public float slideSpeed = .1f;
     public float wallJumpLerp = 60;
-    public float dashSpeed = 40;
+    public float dashSpeed = 100;
+    public float maxVerticalSpeed = 20f;
+    private float lastWallJumpY;
+
 
 
     public bool canMove;
@@ -101,12 +104,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            anim.SetTrigger("jump");
 
-            if (coll.onGround)
+            if (coll.onGround) {
+                anim.SetTrigger("jump");
                 Jump(Vector2.up, false);
-            if (coll.onWall && !coll.onGround)
+            }
+            if (coll.onWall && !coll.onGround) {
+                anim.SetTrigger("walljump");
                 WallJump();
+            }
         }
 
         if (Input.GetButtonDown("Fire1") && !hasDashed)
@@ -153,14 +159,16 @@ public class PlayerMovement : MonoBehaviour
     private void Dash(float x, float y)
     {
         hasDashed = true;
-
         anim.SetTrigger("dash");
-        Vector2 dir = new Vector2(x, y).normalized;
-        if (rb.linearVelocity.y < 0) {
-            dir.y = 0;
-            rb.linearVelocityY = 0;
-        }
-        rb.linearVelocity += dir.normalized * dashSpeed;
+
+        Vector2 dashDir = new Vector2(x, y).normalized;
+
+        rb.linearVelocity += dashDir * dashSpeed;
+
+        rb.linearVelocity = new Vector2(
+            rb.linearVelocity.x,
+            Mathf.Clamp(rb.linearVelocity.y, -maxVerticalSpeed, maxVerticalSpeed)
+        );
 
         StartCoroutine(DashWait());
     }
@@ -190,38 +198,47 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallJump()
     {
-        if ((side == 1 && coll.onRightWall) || side == -1 && !coll.onRightWall)         // TBD
+        if ((side == 1 && coll.onRightWall) || side == -1 && !coll.onRightWall)
         {
+            // Optional: Flip player sprite
             // side *= -1;
             // anim.Flip(side);
         }
 
+        // Prevent repeated jumps on the same wall
+        if (Mathf.Abs(transform.position.y - lastWallJumpY) < 0.1f)
+            return;
+
+        lastWallJumpY = transform.position.y;
+
         StopCoroutine(DisableMovement(0));
-        StartCoroutine(DisableMovement(.1f));
+        StartCoroutine(DisableMovement(.18f));
 
         Vector2 wallDir = coll.onRightWall ? Vector2.left : Vector2.right;
 
-        Jump((Vector2.up / 1.5f + wallDir / 1.5f), true);
+        // Increase jump height for better upward motion
+        Jump((Vector2.up * .9f + wallDir * 1.2f), true);
 
         wallJumped = true;
     }
 
-    private void WallSlide()                        // Fix the slide speed.
-    {
-        // if(coll.wallSide != side)                // TBD
-        //     anim.Flip(side * -1);
 
-        if (!canMove)
+    private void WallSlide()
+    {
+        if (!canMove) // Prevent wall sliding if the player can't move
             return;
 
-        bool pushingWall = false;
-        if((rb.linearVelocity.x > 0 && coll.onRightWall) || (rb.linearVelocity.x < 0 && coll.onLeftWall))
-        {
-            pushingWall = true;
-        }
+        // Check if the player is pushing against the wall
+        bool pushingWall = (rb.linearVelocity.x > 0 && coll.onRightWall) || (rb.linearVelocity.x < 0 && coll.onLeftWall);
+
+        // Limit horizontal velocity based on whether the player is pushing the wall
         float push = pushingWall ? 0 : rb.linearVelocity.x;
 
-        rb.linearVelocity = new Vector2(push, -slideSpeed);
+        // Apply vertical slide speed only if on a wall
+        if (coll.onWall)
+        {
+            rb.linearVelocity = new Vector2(push, Mathf.Max(-slideSpeed, rb.linearVelocity.y));
+        }
     }
 
     private void Walk(Vector2 dir)
@@ -244,10 +261,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump(Vector2 dir, bool wall)
     {
-
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
         rb.linearVelocity += dir * jumpForce;
-
     }
 
     IEnumerator DisableMovement(float time)
