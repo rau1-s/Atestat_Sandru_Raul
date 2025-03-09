@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public bool wallJumped;                     // a sarit sau nu de pe un perete
     public bool wallSlide;                      // aluneca pe un perete
     public bool isDashing;                      // este sau nu in dash
+    private bool isAttacking;
     private bool groundTouch;                   // atinge sau nu pamantul
     private bool hasDashed;                     // a fost sau nu intr-un dash (recent)
 
@@ -51,6 +52,9 @@ public class PlayerMovement : MonoBehaviour
         float xRaw = Input.GetAxisRaw("Horizontal");
         float yRaw = Input.GetAxisRaw("Vertical");
         Vector2 dir = new Vector2(x, y);                             // vector de stochare a directiilor x si y
+
+        if (isAttacking)
+            return;
 
         Walk(dir);
         anim.SetHorizontalMovement(x, y, rb.linearVelocity.y);       // functie care preia date pentru scriptul animatiilor
@@ -229,7 +233,7 @@ public class PlayerMovement : MonoBehaviour
         if (!canMove) // prevenirea alunecarii pe perete daca playerul nu se poate misca
             return;
 
-        // verificare daca playerul apasa pertele
+        // verificare daca playerul apasa peretele
         bool pushingWall = (rb.linearVelocity.x > 0 && coll.onRightWall) || (rb.linearVelocity.x < 0 && coll.onLeftWall);
 
         // limitarea velocitatii orizontale in functie de apasarea jucatorului
@@ -277,5 +281,16 @@ public class PlayerMovement : MonoBehaviour
         canMove = false;
         yield return new WaitForSeconds(time);
         canMove = true;
+    }
+
+    public void StopMovementDuringAttack()
+    {
+        isAttacking = true;
+        rb.linearVelocity = new Vector2(0, 0);
+    }
+
+    public void EnableMovement()
+    {
+        isAttacking = false;
     }
 }

@@ -12,10 +12,9 @@ public class Collision : MonoBehaviour
     public bool onLeftWall;             // indica daca jucatorul atinge peretele din stange
     public int wallSide;                // retine directia peretelui
 
-    public float collisionRadius = 0.25f;                   // dimensiunea razei de detectare a coliziunilor
-    public Vector2 bottomOffset1, bottomOffset2,
-                    rightOffset1, rightOffset2, rightOffset3,
-                    leftOffset1, leftOffset2, leftOffset3;   // offseturi care specifica pozitiile pentru verificarile de coliziune
+    public Vector2 bottomSize = new Vector2(0.5f, 0.2f);
+    public Vector2 sideSize = new Vector2(0.2f, 1f);
+    public Vector2 bottomOffset, rightOffset, leftOffset;   // offseturi care specifica pozitiile pentru verificarile de coliziune
     private Color debugCollisionColor = Color.red;          // culoare folosita pentru a desena sferele de coliziune in editor (debugging)
 
     // Start is called before the first frame update
@@ -29,34 +28,25 @@ public class Collision : MonoBehaviour
     {
         // Physics2D.OverlapCircle -- creeaza un cerc la pozitia specificata si verifica daca se intersecteaza cu obiecte din stratul groundLayer
         // transform.position + bottomOffset -- pozitia jucatorului este dedusa din pozitia jucatorului si offsetul specificat
-        onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset1, collisionRadius, groundLayer)   // bottomOffset pt pamant
-            || Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset2, collisionRadius, groundLayer);
-        onWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset1, collisionRadius, groundLayer)       // right si left pt pereti
-            || Physics2D.OverlapCircle((Vector2)transform.position + rightOffset2, collisionRadius, groundLayer)
-            || Physics2D.OverlapCircle((Vector2)transform.position + rightOffset3, collisionRadius, groundLayer)
-            || Physics2D.OverlapCircle((Vector2)transform.position + leftOffset1, collisionRadius, groundLayer)
-            || Physics2D.OverlapCircle((Vector2)transform.position + leftOffset2, collisionRadius, groundLayer)
-            || Physics2D.OverlapCircle((Vector2)transform.position + leftOffset3, collisionRadius, groundLayer);
+        // Check for ground using a box positioned at the bottom
+        onGround = Physics2D.OverlapBox((Vector2)transform.position + bottomOffset, bottomSize, 0f, groundLayer);
 
-        onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset1, collisionRadius, groundLayer) // right pt perete drept
-            || Physics2D.OverlapCircle((Vector2)transform.position + rightOffset2, collisionRadius, groundLayer);
-        onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset1, collisionRadius, groundLayer)   // left pt perete stang
-            || Physics2D.OverlapCircle((Vector2)transform.position + leftOffset2, collisionRadius, groundLayer)
-            || Physics2D.OverlapCircle((Vector2)transform.position + leftOffset3, collisionRadius, groundLayer);   
+        // Check for walls using tall, narrow boxes on the left and right sides
+        onLeftWall = Physics2D.OverlapBox((Vector2)transform.position + leftOffset, sideSize, 0f, groundLayer);
+        onRightWall = Physics2D.OverlapBox((Vector2)transform.position + rightOffset, sideSize, 0f, groundLayer);
+
+
+        // onWall is true if either left or right detection is active
+        onWall = onLeftWall || onRightWall;
 
         wallSide = onRightWall ? -1 : 1;              //    calculeaza pe ce parte a unui perete se afla jucatorul
     }
 
-    void OnDrawGizmos()             // doar scop in debugging pentru a arata cele 3 zone de coliziune in editor
+    void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere((Vector2)transform.position + bottomOffset1, collisionRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position + bottomOffset2, collisionRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset1, collisionRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset2, collisionRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset3, collisionRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset1, collisionRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset2, collisionRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset3, collisionRadius);
+        Gizmos.DrawWireCube((Vector2)transform.position + bottomOffset, bottomSize);
+        Gizmos.DrawWireCube((Vector2)transform.position + leftOffset, sideSize);
+        Gizmos.DrawWireCube((Vector2)transform.position + rightOffset, sideSize);
     }
 }
