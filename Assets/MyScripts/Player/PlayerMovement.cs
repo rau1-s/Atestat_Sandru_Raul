@@ -32,6 +32,11 @@ public class PlayerMovement : MonoBehaviour
 
     public int side = 1;                        // directia in care playerul priveste
 
+    public AudioClip footstepSound; // Add this in your class
+
+    private float footstepCooldown = 0.4f; // Adjust this to control step frequency
+    private float footstepTimer = 0f;
+
 
     // Start este apelata inainte de primul frame
     void Start()
@@ -52,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
         float xRaw = Input.GetAxisRaw("Horizontal");
         float yRaw = Input.GetAxisRaw("Vertical");
         Vector2 dir = new Vector2(x, y);                             // vector de stochare a directiilor x si y
+        footstepTimer -= Time.deltaTime;
 
         if (isAttacking)
             return;
@@ -248,19 +254,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void Walk(Vector2 dir)
     {
-        // prevenirea cazurilor in care playerul nu se poate misca sau se tine de perete
-        if (!canMove)
+        if (!canMove || wallGrab)
             return;
 
-        if (wallGrab)
-            return;
+        bool isMoving = Mathf.Abs(dir.x) > 0.1f; // Check if moving
+        bool isGrounded = coll.onGround;         // Check if on ground
 
-        // aplicarea miscarii 
-        if (!wallJumped)        // daca jucatorul nu a sarit de pe un perete, miscarea este simpla si instantanee
+        if (isMoving && isGrounded && footstepTimer <= 0f)
+        {
+            SoundManager.instance.PlaySoundQuieter(footstepSound, 0.1f);
+            footstepTimer = footstepCooldown; // Reset timer
+        }
+
+        if (!wallJumped) 
         {
             rb.linearVelocity = new Vector2(dir.x * speed, rb.linearVelocity.y);
         }
-        else
+        else 
         {
             rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, (new Vector2(dir.x * speed, rb.linearVelocity.y)), wallJumpLerp * Time.deltaTime);
         }

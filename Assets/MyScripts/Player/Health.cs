@@ -8,10 +8,13 @@ public class PlayerHealth : MonoBehaviour
     public HealthBar healthBar;  // Reference to the HealthBar script
     public Animator anim;  // Reference to the Animator
     public PlayerMovement playerMovement; // Reference to the PlayerMovement script
+    public PlayerAttack attack;
     private bool dead;
 
     [SerializeField] private float iFramesDuration;
     [SerializeField] private int numberOfFlashes;
+    [SerializeField] private AudioClip[] hurtSounds;
+    [SerializeField] private AudioClip deathSound;
     private SpriteRenderer spriteRend;
 
     void Start()
@@ -22,6 +25,7 @@ public class PlayerHealth : MonoBehaviour
         healthBar = FindObjectOfType<HealthBar>();
         healthBar.UpdateHearts();  // Update UI at start
         spriteRend = GetComponent<SpriteRenderer>();
+        attack = GetComponent<PlayerAttack>();
     }
 
     public void TakeDamage(int damage)
@@ -36,6 +40,8 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth > 0)
         {
+            SoundManager.instance.PlaySoundQuieter(hurtSounds[Random.Range(0, hurtSounds.Length)], 0.5f);
+            attack.OnPlayerHit();
             anim.SetTrigger("hurt");
             StartCoroutine(Invulnerability());
         }
@@ -44,6 +50,7 @@ public class PlayerHealth : MonoBehaviour
             if(!dead)
             {
                 anim.SetTrigger("die");
+                SoundManager.instance.PlaySoundQuieter(deathSound, 0.5f);
                 GetComponent<PlayerMovement>().enabled = false; // Disable movement when dead
                 dead = true;
             }

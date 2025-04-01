@@ -9,6 +9,7 @@ public class MeleeEnemy : MonoBehaviour
     [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private float detectionDelay;  // Time to wait after detecting player
+    [SerializeField] private AudioClip swordSound;
     private float cooldownTimer = Mathf.Infinity;
     private float detectionTimer;
     private bool playerDetected;
@@ -46,6 +47,7 @@ public class MeleeEnemy : MonoBehaviour
                 // Only attack if the player is alive
                 if (playerHealth != null && playerHealth.currentHealth > 0)
                 {
+                    SoundManager.instance.PlaySoundQuieter(swordSound, 0.5f);
                     anim.SetTrigger("MeleeAttack");
                 }
             }
