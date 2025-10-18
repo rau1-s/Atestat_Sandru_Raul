@@ -1,11 +1,9 @@
 # 🎮 Atestat Sandru-Raul  
-> A satisfying pixel-art platformer game combined with combat elements. Embark on the journey of revenge and avenge you late samurai brother!
----
+> A satisfying pixel-art platformer infused with fast-paced combat.  
+> Embark on a journey of revenge and avenge your fallen samurai brother!
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](#license)  
-[![Unity version](https://img.shields.io/badge/Unity-%20≥%2020.x-green.svg?style=for-the-badge)](#requirements)
-
----
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](#license)
+[![Unity Version](https://img.shields.io/badge/Unity-2022.3%2B-green?style=for-the-badge)](#requirements)
 
 ## 📖 Table of Contents  
 - [About](#about)  
@@ -15,7 +13,8 @@
   - [Requirements](#requirements)  
   - [Installation](#installation)  
 - [Usage](#usage)  
-- [Architecture & Tech Stack](#architecture----tech-stack)  
+  - [Controls](#controls)  
+- [Architecture & Tech Stack](#architecture--tech-stack)  
 - [Contributing](#contributing)  
 - [License](#license)  
 - [Contact](#contact)
@@ -23,51 +22,143 @@
 ---
 
 ## 🧠 About  
-This game is built using **Unity** and **C#**.  
-Explain:  
-- The player is able to jump and dash across platformer levels, collecting coins and facing different kinds of enemies. Defeat them in combat to get a higher score.
-- Players must reach the end of multiple level while trying to reach a maximum score.  
-- The different soundtracks, level obstacle layouts, enemies and SFX give the game an aesthetic touch while still keeping that platformer-combat thrill.  
-- This project was build for school, hence its only language setting is Romanian.  
+**Atestat Sandru-Raul** is a 2D **pixel-art platformer** created in **Unity** using **C#**.  
+You control a samurai seeking revenge across several handcrafted levels filled with enemies, traps, and collectibles.  
+
+- Jump and dash across platforms while collecting coins and defeating enemies.  
+- Reach the end of each stage with the highest score possible.  
+- Distinct soundtracks, obstacles, and level designs give every map its own atmosphere.  
+- This project was built as a **school final project (Atestat)**, and its in-game text is available only in **Romanian**.
 
 ---
 
 ## ✨ Features  
-- 🎯 Avoid obstacles while collecting coins and battling enemies.  
-- 🕹️ Keyboard based game. (Mouse only for level selection) 
-- 📦 Levels increase in difficulty.  
-- 🔊 Each level has an own unique soundtrack and SFX present for everything.
-- ✅ Built on Unity, modular asset structure, ready for expansion. (Though unlikely)
+- 🎯 Challenging platforming mixed with fast melee combat.  
+- 🕹️ Keyboard-based controls (mouse used only for menu navigation).  
+- 📦 Multiple levels with increasing difficulty and distinct designs.  
+- 🔊 Each level features its own soundtrack and sound effects for actions and ambience.  
+- 🧱 Clean modular Unity structure — easily extendable for new levels or mechanics.  
 
 ---
 
 ## 🖼️ Demo / Screenshots  
-Here are some visuals from the game so users can quickly see what it looks like:
-
 | Screenshot 1 | Screenshot 2 |
 |--------------|--------------|
 | ![Screenshot1](docs/Screenshot2025-10-18221651.png) | ![Screenshot2](docs/Screenshot2025-10-18221737.png) |
 
-(Optional) A short GIF demo showing gameplay:  
 <p align="center">
-  <img src="docs/GAMEPLAY_FINAL.gif" width="600">
+  <img src="docs/GAMEPLAY_FINAL.gif" width="600" alt="Gameplay demo">
 </p>
 
 ---
 
 ## ⚙️ Getting Started  
+
 ### Requirements  
-- Unity version **20.x or higher** (or specify exact version).  
-- Operating system: Windows/Mac/Linux (or specific).  
-- (If you built/excluded builds) .NET/Mono version, graphics card, etc.
+- **Unity 2022.3 LTS** or later  
+- **Windows 10+** (tested build)  
+- .NET Framework / Mono (bundled with Unity)
 
 ### Installation  
-```bash
+\`\`\`bash
 # Clone the repository
 git clone https://github.com/rau1-s/Atestat_Sandru_Raul.git
 
 # Open Unity Hub and add the project folder
-# Or open Unity > Open Project and select this folder.
+# or open Unity → Open Project → select this directory.
 
-# (If applicable) Build the game:
-File → Build Settings → Select target platform → Build.
+# (Optional) Build the game:
+File → Build Settings → Select target platform → Build
+\`\`\`
+
+---
+
+## 🚀 Usage  
+Launch the game from within Unity or from a built executable.  
+Progress through each level, collect coins, defeat enemies, and aim for the highest score!
+
+---
+
+## 🎮 Controls  
+| Action | Key |
+|--------|-----|
+| Move | A / D |
+| Jump | Space |
+| Dash | E |
+| Attack | Mouse |
+| Pause | Esc |
+
+---
+
+## 🧰 Architecture & Tech Stack  
+**Language:** C#  
+**Engine:** Unity 2022.3 LTS  
+**Art:** Custom pixel-art assets  
+**Audio:** Original or royalty-free soundtracks and SFX  
+
+**Folder Structure:**  
+\`\`\`
+Assets/
+ ├─ Scripts/         # Player, enemies, UI, and managers
+ ├─ Prefabs/         # Reusable game objects
+ ├─ Scenes/          # Level scenes and menus
+ ├─ Audio/           # Music and sound effects
+ ├─ UI/              # Menus and HUD elements
+docs/
+ ├─ screenshots/     # Documentation and visuals
+\`\`\`
+
+The game logic is modular — movement, health, enemy AI, and UI systems are isolated and event-driven for easier maintenance and scalability.
+
+---
+
+## 🤝 Contributing  
+This is a personal/school project.  
+If you want to contribute improvements, feel free to fork the repository and submit a pull request.  
+
+1. Fork the repo  
+2. Create your feature branch  
+   \`\`\`bash
+   git checkout -b feature/your-feature
+   \`\`\`
+3. Commit your changes  
+   \`\`\`bash
+   git commit -m "Add feature: your feature"
+   \`\`\`
+4. Push and open a Pull Request  
+
+---
+
+## 🪪 License  
+MIT License  
+
+Copyright (c) 2025 Raul Sandru  
+
+Permission is hereby granted, free of charge, to any person obtaining a copy  
+of this software and associated documentation files (the "Software"), to deal  
+in the Software without restriction, including without limitation the rights  
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell  
+copies of the Software, and to permit persons to whom the Software is  
+furnished to do so, subject to the following conditions:  
+
+The above copyright notice and this permission notice shall be included in all  
+copies or substantial portions of the Software.  
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR  
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,  
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE  
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER  
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  
+SOFTWARE.
+
+---
+
+## 📫 Contact  
+**Raul Sandru**  
+GitHub – [@rau1-s](https://github.com/rau1-s)  
+Project – [Atestat_Sandru_Raul](https://github.com/rau1-s/Atestat_Sandru_Raul)
+
+<p align="center">
+  <sub>© 2025 Raul Sandru. All rights reserved.</sub>
+</p>
