@@ -156,9 +156,12 @@ SOFTWARE.
 
 ## 📫 Contact  
 **Raul Sandru**  
-GitHub – [@rau1-s](https://github.com/rau1-s)  
-Project – [The_Last_Oath](https://github.com/rau1-s/The_Last_Oath)
+📧 Email – rlsndr00@gmail.com  
+💼 LinkedIn – [linkedin.com/in/raulsandru]([https://www.linkedin.com/in/raul-sandru-337363378/])  
+🐙 GitHub – [@rau1-s](https://github.com/rau1-s)  
+🎮 Project – [The_Last_Oath](https://github.com/rau1-s/The_Last_Oath)
 
 <p align="center">
   <sub>© 2025 Raul Sandru. All rights reserved.</sub>
 </p>
+
