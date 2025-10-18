@@ -46,10 +46,10 @@ Here are some visuals from the game so users can quickly see what it looks like:
 
 | Screenshot 1 | Screenshot 2 |
 |-------------|-------------|
-| ![Screenshot1](docs/Screenshot2025-10-18221651.png) | ![Screenshot2](docs/Screenshot2025-10-18221737.png) |
+| ![Screenshot1](Atestat_Sandru_Raul/docs/Screenshot2025-10-18221651.png) | ![Screenshot2](Atestat_Sandru_Raul/docs/Screenshot2025-10-18221737.png) |
 
 (Optional) A short GIF demo showing gameplay:  
-(docs/GAMEPLAY_FINAL.gif)
+(Atestat_Sandru_Raul/docs/GAMEPLAY_FINAL.gif)
 
 ---
 
