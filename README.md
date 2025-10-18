@@ -157,7 +157,7 @@ SOFTWARE.
 ## 📫 Contact  
 **Raul Sandru**  
 📧 Email – rlsndr00@gmail.com  
-💼 LinkedIn – [linkedin.com/in/raulsandru]([https://www.linkedin.com/in/raul-sandru-337363378/])  
+💼 LinkedIn – [linkedin.com/in/raulsandru](https://www.linkedin.com/in/raul-sandru-337363378/)  
 🐙 GitHub – [@rau1-s](https://github.com/rau1-s)  
 🎮 Project – [The_Last_Oath](https://github.com/rau1-s/The_Last_Oath)
 
