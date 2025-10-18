@@ -1,9 +1,13 @@
-# 🎮 The Last Oath  
+# 🎮 The Last Oath
+
 > A satisfying pixel-art platformer infused with fast-paced combat.  
 > Embark on a journey of revenge and avenge your fallen samurai brother!
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](#license)
-[![Unity Version](https://img.shields.io/badge/Unity-2022.3%2B-green?style=for-the-badge)](#requirements)
+![C#](https://img.shields.io/badge/C%23-239120?style=flat&logo=csharp&logoColor=white)
+![Unity](https://img.shields.io/badge/Unity-100000?style=flat&logo=unity&logoColor=white)
+![Platformer](https://img.shields.io/badge/Genre-Platformer-blue?style=flat)
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)
+
 
 ## 📖 Table of Contents  
 - [About](#about)  
@@ -91,10 +95,10 @@ Progress through each level, collect coins, defeat enemies, and aim for the high
 ---
 
 ## 🧰 Architecture & Tech Stack  
-**Language:** C#  
-**Engine:** Unity 2022.3 LTS  
-**Art:** Custom pixel-art assets  
-**Audio:** Original or royalty-free soundtracks and SFX  
+- [Unity 2022.3 LTS](https://unity.com/)
+- [C#](https://learn.microsoft.com/en-us/dotnet/csharp/)
+- [Aseprite](https://www.aseprite.org/) (for pixel art)
+- [Audacity](https://www.audacityteam.org/) (for SFX editing)
 
 **Folder Structure:**  
 ```
@@ -129,6 +133,11 @@ If you want to contribute improvements, feel free to fork the repository and sub
 
 ---
 
+## 🧩 Future Improvements
+- Add localization support for English
+- Implement save/load system
+- Add achievements and UI polish
+
 ## 🪪 License  
 MIT License  
 
@@ -161,6 +170,9 @@ SOFTWARE.
 🐙 GitHub – [@rau1-s](https://github.com/rau1-s)  
 🎮 Project – [The_Last_Oath](https://github.com/rau1-s/The_Last_Oath)
 
+<p align="center">
+  <sub>Made with ❤️ using Unity by Raul Sandru.</sub>
+</p>
 <p align="center">
   <sub>© 2025 Raul Sandru. All rights reserved.</sub>
 </p>
