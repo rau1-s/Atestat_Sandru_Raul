@@ -1,4 +1,4 @@
-# 🎮 Atestat Sandru-Raul  
+# 🎮 The Last Oath  
 > A satisfying pixel-art platformer infused with fast-paced combat.  
 > Embark on a journey of revenge and avenge your fallen samurai brother!
 
@@ -22,7 +22,7 @@
 ---
 
 ## 🧠 About  
-**Atestat Sandru-Raul** is a 2D **pixel-art platformer** created in **Unity** using **C#**.  
+**The Last Oath** is a 2D **pixel-art platformer** created in **Unity** using **C#**.  
 You control a samurai seeking revenge across several handcrafted levels filled with enemies, traps, and collectibles.  
 
 - Jump and dash across platforms while collecting coins and defeating enemies.  
@@ -60,16 +60,16 @@ You control a samurai seeking revenge across several handcrafted levels filled w
 - .NET Framework / Mono (bundled with Unity)
 
 ### Installation  
-\`\`\`bash
+```bash
 # Clone the repository
-git clone https://github.com/rau1-s/Atestat_Sandru_Raul.git
+git clone https://github.com/rau1-s/The_Last_Oath.git
 
 # Open Unity Hub and add the project folder
 # or open Unity → Open Project → select this directory.
 
 # (Optional) Build the game:
 File → Build Settings → Select target platform → Build
-\`\`\`
+```
 
 ---
 
@@ -97,7 +97,7 @@ Progress through each level, collect coins, defeat enemies, and aim for the high
 **Audio:** Original or royalty-free soundtracks and SFX  
 
 **Folder Structure:**  
-\`\`\`
+```
 Assets/
  ├─ Scripts/         # Player, enemies, UI, and managers
  ├─ Prefabs/         # Reusable game objects
@@ -106,7 +106,7 @@ Assets/
  ├─ UI/              # Menus and HUD elements
 docs/
  ├─ screenshots/     # Documentation and visuals
-\`\`\`
+```
 
 The game logic is modular — movement, health, enemy AI, and UI systems are isolated and event-driven for easier maintenance and scalability.
 
@@ -118,13 +118,13 @@ If you want to contribute improvements, feel free to fork the repository and sub
 
 1. Fork the repo  
 2. Create your feature branch  
-   \`\`\`bash
+   ```bash
    git checkout -b feature/your-feature
-   \`\`\`
+   ```
 3. Commit your changes  
-   \`\`\`bash
+   ```bash
    git commit -m "Add feature: your feature"
-   \`\`\`
+   ```
 4. Push and open a Pull Request  
 
 ---
@@ -157,7 +157,7 @@ SOFTWARE.
 ## 📫 Contact  
 **Raul Sandru**  
 GitHub – [@rau1-s](https://github.com/rau1-s)  
-Project – [Atestat_Sandru_Raul](https://github.com/rau1-s/Atestat_Sandru_Raul)
+Project – [The_Last_Oath](https://github.com/rau1-s/The_Last_Oath)
 
 <p align="center">
   <sub>© 2025 Raul Sandru. All rights reserved.</sub>
